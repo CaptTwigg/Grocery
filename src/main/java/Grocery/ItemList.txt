@@ -1,0 +1,11 @@
+Carrot 100 1.5
+Banana 80 2.0
+Beer 200 15.95
+Pancake 10 17.05
+Butter 12 22.25
+Cola 700 25.95
+Oranges 30 5.00
+Juice 400 18.95
+Pepper 9 33.33
+Chili 3 99.99
+Oates 900 10.00
