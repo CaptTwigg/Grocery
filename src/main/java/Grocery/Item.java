@@ -56,9 +56,10 @@ public class Item {
       item = new Item();
     }
 
-    public static Builder anItem() {
+    //not used
+    /*public static Builder anItem() {
       return new Builder();
-    }
+    }*/
 
     public Builder name(String name) {
       item.setName(name);
