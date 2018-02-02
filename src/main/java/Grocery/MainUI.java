@@ -27,16 +27,28 @@ public class MainUI extends UI  {
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
-    System.out.println(face.getArray());
+
 
     HorizontalLayout layout = new HorizontalLayout();
+
 
     // create grids backed by list data providers
     Grid<Item> left = new Grid<>();
     left.setItems(face.getArray());
-    left.addColumn(Item::getName);
+    left.addColumn(Item::getName)
+    .setCaption("Item")
+    ;
+
+    left.addColumn(Item::getPrice)
+    .setCaption("Price")
+    ;
+
+    left.addColumn(Item::getStock)
+    .setCaption("Stock")
+    ;
+
     Grid<Item> right = new Grid<>();
-    right.setItems(new ArrayList<Item>());
+    right.setItems(new ArrayList<>());
     right.addColumn(Item::getName);
 
     left.setWidth(300, Sizeable.Unit.PIXELS);
