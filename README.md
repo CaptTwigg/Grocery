@@ -1,4 +1,4 @@
-##Brush-up Project: Grocery List
+## Brush-up Project: Grocery List
 (in groups of 2 students) 
 
 Write a class named GroceryList that represents a list of items to buy from the supermarket, and another class named GroceryItemOrder that represents a request to purchase a particular item in a given quantity (example: four boxes of cookies).
@@ -12,4 +12,4 @@ Instead of writing the names of the items when instantiating them in the test cl
 
 Make a new version of GroceryList (name it GroceryList2). Change the implementation of the GroceryList2 to use an ArrayList instead of an array.
 
-#If you finish fast: Make more improvements to your program!
+# If you finish fast: Make more improvements to your program!
