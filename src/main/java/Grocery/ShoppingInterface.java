@@ -19,8 +19,6 @@ public class ShoppingInterface {
     load();
     addToBasket();
     totalCost();
-
-
   }
 
   public ArrayList<Item> getArray(){
@@ -32,11 +30,11 @@ public class ShoppingInterface {
     return items;
   }
 
-  public void addToBasket() {
+  private void addToBasket() {
     Scanner input = new Scanner(System.in);
 
     for (Item i : items) {
-      System.out.printf("Item: %-6s \t Price: %s \n", i.getName(), i.getPrice());
+      System.out.printf("Item: %-6s \t Price: %s\n", i.getName(), i.getPrice());
 
     }
 
@@ -47,7 +45,7 @@ public class ShoppingInterface {
         break;
       }
 
-      System.out.println("Write the name of the items you want or enter 0 to checkout.");
+      System.out.println("Write the name of the items you want or enter 0 to checkout.\n");
       String itemNameInput = input.next();
 
       if (itemNameInput.equals("0"))
@@ -64,23 +62,26 @@ public class ShoppingInterface {
       }
 
         if (found) {
-          int itemStock = item.getStock();
-
-
+          //object initialized for further use in two scopes
           int itemQuantityInput;
+
           while(true) {
-            System.out.println("How many would you like? \nStock: " + item.getStock());
+            System.out.println("How many would you like? Choose from 1-10.\nStock: " + item.getStock());
             itemQuantityInput = input.nextInt();
+
             if (itemQuantityInput > item.getStock() || itemQuantityInput > 10) {
               //continue re-do the loop from the start (do)
               System.out.println("Please choose an available amount.");
               continue;
+            }else if (itemQuantityInput == 0){
+              System.out.println("Don't be stupid and try again.");
+              continue;
             }
             break;
-
           }
           totalItems += itemQuantityInput;
 
+          //client code from the builder pattern. Easier to read if there's more details.
           shoppingCart.add(new ShopItem.Builder()
             .item(item)
             .quantity(itemQuantityInput)
@@ -88,7 +89,6 @@ public class ShoppingInterface {
         } else
           System.out.println("Item not found.");
       }
-
     }
 
 
@@ -115,9 +115,7 @@ public class ShoppingInterface {
     for (ShopItem i : shoppingCart){
       total += i.getItem().getPrice() * i.getQuantity();
     }
-    System.out.println("Total cost: " + total);
+    System.out.printf("Total cost: %.2f Kr,-", total);
 
   }
-
-
 }

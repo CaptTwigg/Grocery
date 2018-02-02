@@ -49,7 +49,15 @@ public class MainUI extends UI  {
 
     Grid<Item> right = new Grid<>();
     right.setItems(new ArrayList<>());
-    right.addColumn(Item::getName);
+    right.addColumn(Item::getName)
+    .setCaption("Item")
+    ;
+
+    right.addColumn(Item::getPrice)
+    .setCaption("Price")
+    ;
+
+
 
     left.setWidth(300, Sizeable.Unit.PIXELS);
     right.setWidth(300, Sizeable.Unit.PIXELS);
@@ -73,7 +81,6 @@ public class MainUI extends UI  {
         .setDropEffect(DropEffect.NONE));
     rightToLeft.getGridDragSource().addDragEndListener(
       event -> leftToRight.getGridDropTarget().setDropEffect(null));
-
 
     layout.addComponent(left);
     layout.addComponent(right);

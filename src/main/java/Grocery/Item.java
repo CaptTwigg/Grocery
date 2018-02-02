@@ -1,14 +1,16 @@
 package Grocery;
 
 public class Item {
+
+  //fields
   private String name;
   private int stock;
   private double price;
 
-  public Item() {
+  //constructor
+  public Item() {  }
 
-  }
-
+  //getters and setters
   public String getName() {
     return name;
   }
@@ -33,13 +35,19 @@ public class Item {
     this.price = price;
   }
 
+  //overrides toString() method in java.lang.Object class
   @Override
   public String toString() {
     return String.format("name: %s stock: %s price: %s "
       , this.name, this.stock, this.price);
   }
 
-
+  /**
+   * Just like a constructor, the builder pattern
+   * can can impose invariants on its parameters.
+   *
+   * You get client code, that's easier to read.
+   */
   public static final class Builder {
 
     private Item item;
@@ -48,9 +56,10 @@ public class Item {
       item = new Item();
     }
 
-    public static Builder anItem() {
+    //not used
+    /*public static Builder anItem() {
       return new Builder();
-    }
+    }*/
 
     public Builder name(String name) {
       item.setName(name);
