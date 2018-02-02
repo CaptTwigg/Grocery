@@ -1,10 +1,10 @@
-Carrot 100 1.5
-Banana 80 2.0
+Carrot 100 01.50
+Banana 80 02.05
 Beer 200 15.95
 Pancake 10 17.05
 Butter 12 22.25
 Cola 700 25.95
-Oranges 30 5.00
+Oranges 30 05.11
 Juice 400 18.95
 Pepper 9 33.33
 Chili 3 99.99

@@ -25,11 +25,11 @@ public class ShoppingInterface {
     return items;
   }
 
-  public void addToBasket() {
+  private void addToBasket() {
     Scanner input = new Scanner(System.in);
 
     for (Item i : items) {
-      System.out.printf("Item: %-6s \t Price: %s \n", i.getName(), i.getPrice());
+      System.out.printf("Item: %-6s \t Price: %s\n", i.getName(), i.getPrice());
 
     }
 
@@ -40,7 +40,7 @@ public class ShoppingInterface {
         break;
       }
 
-      System.out.println("Write the name of the items you want or enter 0 to checkout.");
+      System.out.println("Write the name of the items you want or enter 0 to checkout.\n");
       String itemNameInput = input.next();
 
       if (itemNameInput.equals("0"))
@@ -110,7 +110,7 @@ public class ShoppingInterface {
     for (ShopItem i : shoppingCart){
       total += i.getItem().getPrice() * i.getQuantity();
     }
-    System.out.println("Total cost: " + total);
+    System.out.printf("Total cost: %.2f Kr,-", total);
 
   }
 }
