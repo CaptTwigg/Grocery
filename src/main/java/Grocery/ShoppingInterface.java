@@ -19,8 +19,6 @@ public class ShoppingInterface {
     load();
     addToBasket();
     totalCost();
-
-
   }
 
   public ArrayList<Item> getArray(){
@@ -59,23 +57,26 @@ public class ShoppingInterface {
       }
 
         if (found) {
-          int itemStock = item.getStock();
-
-
+          //object initialized for further use in two scopes
           int itemQuantityInput;
+
           while(true) {
-            System.out.println("How many would you like? \nStock: " + item.getStock());
+            System.out.println("How many would you like? Choose from 1-10.\nStock: " + item.getStock());
             itemQuantityInput = input.nextInt();
+
             if (itemQuantityInput > item.getStock() || itemQuantityInput > 10) {
               //continue re-do the loop from the start (do)
               System.out.println("Please choose an available amount.");
               continue;
+            }else if (itemQuantityInput == 0){
+              System.out.println("Don't be stupid and try again.");
+              continue;
             }
             break;
-
           }
           totalItems += itemQuantityInput;
 
+          //client code from the builder pattern. Easier to read if there's more details.
           shoppingCart.add(new ShopItem.Builder()
             .item(item)
             .quantity(itemQuantityInput)
@@ -83,7 +84,6 @@ public class ShoppingInterface {
         } else
           System.out.println("Item not found.");
       }
-
     }
 
 
@@ -113,6 +113,4 @@ public class ShoppingInterface {
     System.out.println("Total cost: " + total);
 
   }
-
-
 }
