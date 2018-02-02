@@ -24,6 +24,11 @@ public class ShoppingInterface {
   }
 
   public ArrayList<Item> getArray(){
+    try {
+      load();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
     return items;
   }
 
