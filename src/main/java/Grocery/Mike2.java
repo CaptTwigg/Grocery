@@ -19,13 +19,17 @@ public class Mike2 extends UI {
 
   private ArrayList<Item> basket = new ArrayList<>();
   private ArrayList<Item> items = new ShoppingInterface().getArray();
+  private Double totalCost = 0.0;
+  private Label price = new Label();
 
   @Override
   protected void init(VaadinRequest vaadinRequest) {
+    price.setValue("Total cost: " + totalCost);
 
     GridLayout mainGrid = new GridLayout(16, 16);
     mainGrid.setSizeFull();
     mainGrid.addComponent(drag(), 1, 1);
+    mainGrid.addComponent(price, 2, 1);
 
 
     setContent(mainGrid);
@@ -106,31 +110,32 @@ public class Mike2 extends UI {
 
   private void update(Item item, Button buttonPlus, Button buttonMinus, Grid right, Grid left) {
     buttonPlus.addClickListener(event -> {
-      basket.add(item);
-      item.setStock(item.getStock() - 1);
-      right.getDataProvider().refreshAll();
-      left.getDataProvider().refreshAll();
-
-      Notification.show("The button was clicked", Notification.Type.TRAY_NOTIFICATION);
-    });
-
-    buttonMinus.addClickListener(event ->{
-      int index = getItemIndex(item);
-      if(index != -1){
-        basket.remove(index);
-        item.setStock(item.getStock()+1);
+      if (item.getStock() > 0) {
+        basket.add(item);
+        totalCost += item.getPrice();
+        item.setStock(item.getStock() - 1);
         right.getDataProvider().refreshAll();
         left.getDataProvider().refreshAll();
       }
-
     });
 
+    buttonMinus.addClickListener(event -> {
+      int index = getItemIndex(item);
+      if (index != -1) {
+        basket.remove(index);
+        totalCost -= item.getPrice();
+        item.setStock(item.getStock() + 1);
+        right.getDataProvider().refreshAll();
+        left.getDataProvider().refreshAll();
+      }
+    });
+    price.setValue(String.format("Total cost: %(.2f", totalCost));
 
   }
 
-  private int getItemIndex(Item item){
-    for (int i = 0; i < basket.size(); i++){
-      if(item.getName().equals(basket.get(i).getName()))
+  private int getItemIndex(Item item) {
+    for (int i = 0; i < basket.size(); i++) {
+      if (item.getName().equals(basket.get(i).getName()))
         return i;
     }
     return -1;
