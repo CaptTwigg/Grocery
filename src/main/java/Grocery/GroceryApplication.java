@@ -16,7 +16,7 @@ public class GroceryApplication {
 
 		SpringApplication.run(GroceryApplication.class, args);
 
-    //new ShoppingInterface().menu();
+   // new ShoppingInterface().menu();
 
 
 	}

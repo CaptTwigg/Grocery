@@ -39,10 +39,6 @@ public class ShopItem {
       shopItem = new ShopItem();
     }
 
-    public static Builder aShopItem() {
-      return new Builder();
-    }
-
     public Builder item(Item item) {
       shopItem.setItem(item);
       return this;
