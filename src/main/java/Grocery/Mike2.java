@@ -11,6 +11,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 @SpringUI(path = "mike2")
@@ -53,9 +54,13 @@ public class Mike2 extends UI {
     ;
 
     Grid<Item> left = new Grid<>();
+    Grid test = new Grid<>();
+
+
     left.setItems(items);
     left.setHeight(layout.getHeight() / 10, Unit.PERCENTAGE);
     left.setSelectionMode(Grid.SelectionMode.NONE);
+    //left.setColumns("name","stock");
 
     left.addColumn(Item::getName)
       .setCaption("Item")

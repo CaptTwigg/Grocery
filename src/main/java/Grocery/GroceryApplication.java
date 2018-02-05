@@ -14,9 +14,9 @@ public class GroceryApplication {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		//SpringApplication.run(GroceryApplication.class, args);
+		SpringApplication.run(GroceryApplication.class, args);
 
-    new ShoppingInterface().menu();
+    //new ShoppingInterface().menu();
 
 
 	}
