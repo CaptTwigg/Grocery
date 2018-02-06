@@ -54,8 +54,6 @@ public class Mike2 extends UI {
     ;
 
     Grid<Item> left = new Grid<>();
-    Grid test = new Grid<>();
-
 
     left.setItems(items);
     left.setHeight(layout.getHeight() / 10, Unit.PERCENTAGE);

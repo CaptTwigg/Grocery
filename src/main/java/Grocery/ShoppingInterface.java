@@ -21,7 +21,8 @@ public class ShoppingInterface {
     totalCost();
   }
 
-  public ArrayList<Item> getArray(){
+  //metode vi bruger til at hente ind i vores UI
+  public ArrayList<Item> getArray() {
     try {
       load();
     } catch (FileNotFoundException e) {
@@ -33,14 +34,12 @@ public class ShoppingInterface {
   private void addToBasket() {
     Scanner input = new Scanner(System.in);
 
-    for (Item i : items) {
-      System.out.printf("Item: %-6s \t Price: %s\n", i.getName(), i.getPrice());
-
-    }
 
     while (true) {
 
-      if(totalItems >= 10) {
+      for (Item i : items) System.out.printf("Item: %-6s \t Price: %s\n", i.getName(), i.getPrice());
+
+      if (totalItems >= 10) {
         System.out.println("Max amount of items. \nChecking out.");
         break;
       }
@@ -54,68 +53,60 @@ public class ShoppingInterface {
       boolean found = false;
       Item item = null;
       for (Item foundItem : items) {
-        if (foundItem.getName().equalsIgnoreCase(itemNameInput)){
+        if (foundItem.getName().equalsIgnoreCase(itemNameInput)) {
           item = foundItem;
           found = true;
         }
 
       }
 
-        if (found) {
-          //object initialized for further use in two scopes
-          int itemQuantityInput;
+      if (found) {
+        //object initialized for further use in two scopes
+        int itemQuantityInput;
 
-          while(true) {
-            System.out.println("How many would you like? Choose from 1-10.\nStock: " + item.getStock());
-            itemQuantityInput = input.nextInt();
+        while (true) {
+          System.out.println("How many would you like? Choose from 1-10.\nStock: " + item.getStock());
+          itemQuantityInput = input.nextInt();
 
-            if (itemQuantityInput > item.getStock() || itemQuantityInput > 10) {
-              //continue re-do the loop from the start (do)
-              System.out.println("Please choose an available amount.");
-              continue;
-            }else if (itemQuantityInput == 0){
-              System.out.println("Don't be stupid and try again.");
-              continue;
-            }
-            break;
+          if (itemQuantityInput > item.getStock() || itemQuantityInput > 10 || itemQuantityInput <= 0) {
+            //continue re-do the loop from the start (do)
+            System.out.println("Please choose an available amount.");
+            continue;
           }
-          totalItems += itemQuantityInput;
+          break;
+        }
+        totalItems += itemQuantityInput;
 
-          //client code from the builder pattern. Easier to read if there's more details.
-          shoppingCart.add(new ShopItem.Builder()
-            .item(item)
-            .quantity(itemQuantityInput)
-            .build());
-        } else
-          System.out.println("Item not found.");
-      }
+        //client code from the builder pattern. Easier to read if there's more details.
+        shoppingCart.add(new ShopItem.Builder()
+          .item(item)
+          .quantity(itemQuantityInput)
+          .build());
+      } else
+        System.out.println("Item not found.");
     }
+  }
 
 
   public void load() throws FileNotFoundException {
     Scanner scanFile = new Scanner(new File(file));
-    scanFile.useLocale(Locale.ENGLISH);
+    scanFile.useLocale(Locale.ENGLISH); //read the delimiter
 
     while (scanFile.hasNextLine()) {
-      String itemName = scanFile.next();
-      int itemStock = scanFile.nextInt();
-      double itemCost = scanFile.nextDouble();
-
       items.add(new Item.Builder()
-        .name(itemName)
-        .stock(itemStock)
-        .price(itemCost)
+        .name(scanFile.next())
+        .stock(scanFile.nextInt())
+        .price(scanFile.nextDouble())
         .build()
       );
     }
   }
 
-  private void totalCost(){
+  private void totalCost() {
     double total = 0;
-    for (ShopItem i : shoppingCart){
+    for (ShopItem i : shoppingCart) {
       total += i.getItem().getPrice() * i.getQuantity();
     }
-    System.out.printf("Total cost: %.2f Kr,-", total);
-
+    System.out.printf("Total cost: %.2f Bitcoins", total);
   }
 }

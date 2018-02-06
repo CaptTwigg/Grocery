@@ -44,7 +44,7 @@ public class Item {
 
   /**
    * Just like a constructor, the builder pattern
-   * can can impose invariants on its parameters.
+   * can impose invariants on its parameters.
    *
    * You get client code, that's easier to read.
    */
@@ -55,11 +55,6 @@ public class Item {
     public Builder() {
       item = new Item();
     }
-
-    //not used
-    /*public static Builder anItem() {
-      return new Builder();
-    }*/
 
     public Builder name(String name) {
       item.setName(name);
