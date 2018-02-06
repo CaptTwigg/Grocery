@@ -32,7 +32,6 @@ public class Mike2 extends UI {
     mainGrid.addComponent(drag(), 1, 1);
     mainGrid.addComponent(price, 2, 1);
 
-
     setContent(mainGrid);
 
   }
@@ -58,7 +57,6 @@ public class Mike2 extends UI {
     left.setItems(items);
     left.setHeight(layout.getHeight() / 10, Unit.PERCENTAGE);
     left.setSelectionMode(Grid.SelectionMode.NONE);
-    //left.setColumns("name","stock");
 
     left.addColumn(Item::getName)
       .setCaption("Item")

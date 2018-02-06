@@ -8,7 +8,7 @@ public class Item {
   private double price;
 
   //constructor
-  public Item() {  }
+  public Item() {}
 
   //getters and setters
   public String getName() {
